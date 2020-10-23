@@ -106,15 +106,15 @@ class InnerContainer extends Component {
   render() {
     return (
       <div>
-        <div class="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Carousel interval={this.state.intervalAutoPlay} indicators={this.state.indicators} navButtonsAlwaysVisible={this.state.navButtonsAlwaysVisible} autoPlay={this.state.autoPlay} animation={this.state.animationRadio}>
             {
               this.state.villasDataArr.map((item, i) => {
                 var index = i + 1
-                return <Paper style={{ maxHeight: "600px" }}>
+                return <Paper key={i + 1} style={{ maxHeight: "600px" }}>
 
                   <img src={item.villaImage} style={{ objectFit: 'cover', width: '100%', height: "500px" }} />
-                  <div class="grid grid-cols-1 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -125,7 +125,7 @@ class InnerContainer extends Component {
                         <Typography>Show Details</Typography>
                       </AccordionSummary>
                       <AccordionDetails style={styles.accordionDetails}>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" style={{ height: "50px", overflowY: 'auto', width: "100%" }}>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" style={{ height: "50px", overflowY: 'auto', width: "100%" }}>
                           <Typography>
                             Name : {item.villaName}
                           </Typography>
@@ -150,7 +150,7 @@ class InnerContainer extends Component {
             }
           </Carousel>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           <FormControlLabel
             control={<Checkbox
               style={styles.checkBoxStyle}
@@ -176,7 +176,7 @@ class InnerContainer extends Component {
             label="Auto-Play"
           />
           <RadioGroup value={this.state.animationRadio} onChange={this.handleRadioChange}>
-            <div class="grid grid-cols-2 ">
+            <div className="grid grid-cols-2 ">
               <FormControlLabel value="fade" control={<Radio style={styles.checkBoxStyle}
               />} label="Fade" />
               <FormControlLabel value="slide" control={<Radio style={styles.checkBoxStyle}
