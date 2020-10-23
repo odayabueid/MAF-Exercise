@@ -20,7 +20,6 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import InnerContainer from './InnerContainer'
 import { SocialIcon } from 'react-social-icons';
 import villasData from '../data.json'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 var drawerWidth = 240;
 
@@ -89,7 +88,7 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [pagesArr, setPagesArr] = React.useState([700000, 800000, 900000, 1000000])
+  const [pagesArr] = React.useState([700000, 800000, 900000, 1000000])
   const [villas, setVillas] = React.useState([])
   // console.log(drawerWidth)
 

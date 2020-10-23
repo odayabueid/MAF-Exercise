@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@material-ui/core'
-import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -113,7 +111,7 @@ class InnerContainer extends Component {
                 var index = i + 1
                 return <Paper key={i + 1} style={{ maxHeight: "600px" }}>
 
-                  <img src={item.villaImage} style={{ objectFit: 'cover', width: '100%', height: "500px" }} />
+                  <img src={item.villaImage} style={styles.imageStyle} alt="Villa" />
                   <div className="grid grid-cols-1 gap-4">
                     <Accordion>
                       <AccordionSummary
@@ -201,6 +199,11 @@ const styles = {
   },
   checkBoxStyle: {
     color: "#b39759"
+  },
+  imageStyle: {
+    objectFit: 'cover',
+    width: '100%',
+    height: "500px"
   }
 
 }
