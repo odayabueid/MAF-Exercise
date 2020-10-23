@@ -220,9 +220,7 @@ const styles = {
     textAlign: 'center',
     marginTop: '20px'
   },
-  slideSize: {
-    fontSize: "22px"
-  }
+
 }
 
 
