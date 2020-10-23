@@ -1,0 +1,52 @@
+{
+    "villas": [
+        {
+            "villaLocation": "2100 West Littleton Blvd Littleton, CO 80120",
+            "villaPrice": 730000,
+            "villaName": "The Croft",
+            "villaImage": "https://icon-invest.com/images/properties/57_1534933188_5swDUR5x.jpg"
+        },
+        {
+            "villaLocation": "3541 North California  CTO, CO 85265",
+            "villaPrice": 780000,
+            "villaName": "The Sunnyside",
+            "villaImage": "https://c4.wallpaperflare.com/wallpaper/659/229/249/luxury-villas-house-furniture-lighting-night-wallpaper-preview.jpg"
+        },
+        {
+            "villaLocation": "5437 South california Blvd Littleton, CO 7114",
+            "villaPrice": 850000,
+            "villaName": "The Willows",
+            "villaImage": "https://i.pinimg.com/originals/a0/0b/7a/a00b7ad9b8650474e0cfcbaa077ee80e.jpg"
+        },
+        {
+            "villaLocation": "8541  Washington 1 8streat, CO 78254",
+            "villaPrice": 890000,
+            "villaName": "The Cottage",
+            "villaImage": "https://www.studentprojectsmea.com/wp-content/uploads/somaya-kassem-connected-villas-HD.jpg"
+        },
+        {
+            "villaLocation": "8741 East NewYourk  TimeCenter, CO 80120",
+            "villaPrice": 910000,
+            "villaName": "Orchard Cottage",
+            "villaImage": "https://c4.wallpaperflare.com/wallpaper/859/271/827/the-city-villa-pool-house-in-ibiza-wallpaper-preview.jpg"
+        },
+        {
+            "villaLocation": "2100 West California  CityCenter, CO 90521",
+            "villaPrice": 990000,
+            "villaName": "Woodlands",
+            "villaImage": "https://c4.wallpaperflare.com/wallpaper/978/735/702/5bd34b140c420-wallpaper-preview.jpg"
+        },
+        {
+            "villaLocation": "2100 West California  CityCenter, CO 90521",
+            "villaPrice": 1500000,
+            "villaName": "Woodlands",
+            "villaImage": "https://vistapointe.net/images/villa-6.jpg"
+        },
+        {
+            "villaLocation": "8100 Nort NewYourk, MD 35121",
+            "villaPrice": 3500000,
+            "villaName": "Heavenlands",
+            "villaImage": "https://vidadelsol.com/wp-content/uploads/SYZYGY-VILLAS-Exterior-_nocturna_HD-kopie-website.jpg"
+        }
+    ]
+}

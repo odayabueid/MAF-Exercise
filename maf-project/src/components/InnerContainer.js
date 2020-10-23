@@ -13,19 +13,29 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import BeautyStars from 'beauty-stars';
+import villasData from '../data.json'
 
 class InnerContainer extends Component {
 
   state = {
-    villasDataArr: [
-      { villaLocation: "2100 West Littleton Blvd Littleton, CO 80120", villaPrice: '730K$', villaName: 'The Croft', villaImage: 'https://cdn.villaway.com/202303/external/596951cda0ca05aa32167013/bg_tn_y0i1vuyc15_202303.jpg' },
-      { villaLocation: '3541 North California  CTO, CO 85265', villaPrice: '780K$', villaName: 'The Sunnyside', villaImage: 'https://icon-invest.com/images/properties/57_1534933188_5swDUR5x.jpg' },
-    ],
+    villasDataArr: [],
     indicators: true,
     indicatorsChecked: true,
     navButtonsAlwaysVisible: false,
     autoPlay: false,
     animationRadio: 'fade',
+  }
+
+  componentDidMount = () => {
+    var villasDataArr = []
+    villasData.villas.forEach(el => {
+      if (el.villaPrice < 800000) {
+        villasDataArr.push(el)
+      }
+    })
+    this.setState({
+      villasDataArr: villasDataArr
+    })
   }
 
   componentDidUpdate = (prevProps, props) => {
@@ -37,7 +47,6 @@ class InnerContainer extends Component {
   }
 
   handleChange = (name, event) => {
-    console.log(event.target.checked)
     this.setState({
       [name]: event.target.checked
     }, () => {
@@ -47,8 +56,7 @@ class InnerContainer extends Component {
   }
 
   handleCarousel = (name, event) => {
-    console.log(name)
-    if (name == 'indicatorsChecked') {
+    if (name === 'indicatorsChecked') {
       if (event.target.checked) {
         this.setState({
           indicators: true
@@ -59,7 +67,7 @@ class InnerContainer extends Component {
         })
       }
     }
-    if (name == 'navButtonsAlwaysVisible') {
+    if (name === 'navButtonsAlwaysVisible') {
       if (event.target.checked) {
         this.setState({
           navButtonsAlwaysVisible: true
@@ -70,7 +78,7 @@ class InnerContainer extends Component {
         })
       }
     }
-    if (name == 'autoPlay') {
+    if (name === 'autoPlay') {
       if (event.target.checked) {
         this.setState({
           autoPlay: true
@@ -83,12 +91,12 @@ class InnerContainer extends Component {
     }
   }
   handleRadioChange = (event) => {
-    if (event.target.value == 'fade') {
+    if (event.target.value === 'fade') {
       this.setState({
         animationRadio: 'fade'
       })
     }
-    if (event.target.value == 'slide') {
+    if (event.target.value === 'slide') {
       this.setState({
         animationRadio: 'slide'
       })
@@ -112,35 +120,31 @@ class InnerContainer extends Component {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
+                        style={styles.accordion}
                       >
                         <Typography>Show Details</Typography>
                       </AccordionSummary>
-                      <AccordionDetails>
-                        <div class="grid grid-cols-3 gap-4">
+                      <AccordionDetails style={styles.accordionDetails}>
+                        <div class="grid grid-cols-4 gap-4">
                           <Typography>
-                            Villa Name : {item.villaName}
+                            Name : {item.villaName}
                           </Typography>
                           <Typography>
-                            Villa Price : {item.villaPrice}
-                          </Typography>
-                          <Typography>
-                            Villa Location :{item.villaLocation}
+                            Price : {item.villaPrice}
                           </Typography>
                           <BeautyStars
                             value={index + 2}
                             size="15px"
                             onChange={value => this.setState({ value })}
                           />
+                          <Typography>
+                            {item.villaLocation}
+                          </Typography>
+
                         </div>
                       </AccordionDetails>
                     </Accordion>
                   </div>
-                  {/* <details>
-                    <summary>Epcot Center</summary>
-                    <p>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</p>
-                  </details> */}
-                  {/* <h2>{item.villaLocation}</h2>
-                  <p>{item.villaName}</p> */}
                 </Paper>
               })
             }
@@ -149,6 +153,7 @@ class InnerContainer extends Component {
         <div class="grid grid-cols-5 gap-4">
           <FormControlLabel
             control={<Checkbox
+              style={styles.checkBoxStyle}
               checked={this.state.indicatorsChecked}
               onChange={(event) => this.handleChange('indicatorsChecked', event)}
             />}
@@ -157,12 +162,14 @@ class InnerContainer extends Component {
           <FormControlLabel
             control={<Checkbox
               checked={this.state.navButtonsAlwaysVisible}
+              style={styles.checkBoxStyle}
               onChange={(event) => this.handleChange('navButtonsAlwaysVisible', event)}
             />}
             label="Visible Buttons"
           />
           <FormControlLabel
             control={<Checkbox
+              style={styles.checkBoxStyle}
               checked={this.state.autoPlay}
               onChange={(event) => this.handleChange('autoPlay', event)}
             />}
@@ -170,8 +177,10 @@ class InnerContainer extends Component {
           />
           <RadioGroup value={this.state.animationRadio} onChange={this.handleRadioChange}>
             <div class="grid grid-cols-2 ">
-              <FormControlLabel value="fade" control={<Radio />} label="Fade" />
-              <FormControlLabel value="slide" control={<Radio />} label="Slide" />
+              <FormControlLabel value="fade" control={<Radio style={styles.checkBoxStyle}
+              />} label="Fade" />
+              <FormControlLabel value="slide" control={<Radio style={styles.checkBoxStyle}
+              />} label="Slide" />
             </div>
           </RadioGroup>
         </div>
@@ -180,3 +189,18 @@ class InnerContainer extends Component {
   }
 }
 export default InnerContainer
+
+const styles = {
+  accordion: {
+    backgroundColor: "#eee"
+  },
+  accordionDetails: {
+    color: "#31261d",
+    borderTop: '1px solid #ccc',
+
+  },
+  checkBoxStyle: {
+    color: "#b39759"
+  }
+
+}

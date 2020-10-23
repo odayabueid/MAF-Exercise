@@ -17,12 +17,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import { Route, Redirect } from 'react-router'
-import { Container, StylesProvider } from '@material-ui/core';
 import InnerContainer from './InnerContainer'
-import { SocialMediaIconsReact } from 'social-media-icons-react';
-
+import { SocialIcon } from 'react-social-icons';
+import villasData from '../data.json'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -64,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     color: '#b29658',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
@@ -90,7 +86,7 @@ export default function SideMenu() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [pagesArr, setPagesArr] = React.useState(['700K$-800k$', '800K$-900k$', '900K$-1M$', '> 1M$'])
+  const [pagesArr, setPagesArr] = React.useState([700000, 800000, 900000, 1000000])
   const [villas, setVillas] = React.useState([])
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,23 +104,20 @@ export default function SideMenu() {
     e.target.style.color = '#fff';
 
   }
-  const pagesHandler = (text) => {
-    if (text == '700K$-800k$') {
-      setVillas([
-        { villaLocation: "2100 West Littleton Blvd Littleton, CO 80120", villaPrice: '730K$', villaName: 'The Croft', villaImage: 'https://cdn.villaway.com/202303/external/596951cda0ca05aa32167013/bg_tn_y0i1vuyc15_202303.jpg' },
-        { villaLocation: '3541 North California  CTO, CO 85265', villaPrice: '780K$', villaName: 'The Sunnyside', villaImage: 'https://icon-invest.com/images/properties/57_1534933188_5swDUR5x.jpg' }
-      ])
-    } else if (text == '800K$-900k$') {
-      setVillas([
-        { villaLocation: '5437 South california Blvd Littleton, CO 7114', villaPrice: '850K$', villaName: 'The Willows', villaImage: 'https://i.pinimg.com/originals/a0/0b/7a/a00b7ad9b8650474e0cfcbaa077ee80e.jpg' },
-        { villaLocation: '8541  Washington 1 8streat, CO 78254', villaPrice: '890K$', villaName: 'The Cottage', villaImage: 'https://www.wallpapers13.com/wp-content/uploads/2017/10/Dusit-Thani-Villa-Maldives-island-luxury-resort-on-Mudhdhoo-Island-in-Baa-Atoll-HD-Wallpaper-for-Desktop-1920x1200-915x515.jpg' },
-      ])
-    } else if (text == '900K$-1M$') {
-      setVillas([
-        { villaLocation: '8741 East NewYourk  TimeCenter, CO 80120', villaPrice: '910K$', villaName: 'Orchard Cottage', villaImage: 'https://s2.best-wallpaper.net/wallpaper/2880x1800/1812/Bulgaria-Karlovo-house-villa_2880x1800.jpg' },
-        { villaLocation: '2100 West California  CityCenter, CO 90521', villaPrice: '990K$', villaName: 'Woodlands', villaImage: 'https://data.1freewallpapers.com/download/luxurious-beach-villa.jpg' }
-      ])
-    }
+  const pagesHandler = (price) => {
+    var handleVillasData = []
+    villasData.villas.forEach(el => {
+      if (price >= 700000 && price < 800000 && el.villaPrice >= 700000 && el.villaPrice < 800000) {
+        handleVillasData.push(el)
+      } else if (price >= 800000 && price < 900000 && el.villaPrice >= 800000 && el.villaPrice < 900000) {
+        handleVillasData.push(el)
+      } else if (price >= 900000 && price < 1000000 && el.villaPrice >= 900000 && el.villaPrice < 1000000) {
+        handleVillasData.push(el)
+      } else if (price >= 1000000 && el.villaPrice >= 1000000) {
+        handleVillasData.push(el)
+      }
+      setVillas(handleVillasData)
+    })
   }
   return (
     <div className={classes.root}>
@@ -170,11 +163,12 @@ export default function SideMenu() {
         <Divider />
         <List>
           {pagesArr.map((text, index) => (
+
             <ListItem button key={text} onClick={() => {
               pagesHandler(text)
             }}>
               <ListItemIcon style={styles.listIcon}><InboxIcon /> </ListItemIcon>
-              <ListItemText primary={text} style={styles.listItems} />
+              <ListItemText primary={text < 1000000 ? `${Math.sign(text) * ((Math.abs(text) / 1000).toFixed(1)) + 'k'}-${Math.sign(text + 100000) * ((Math.abs(text + 100000) / 1000).toFixed(1)) + 'k'}` : '>1M'} style={styles.listItems} />
             </ListItem>
           ))}
         </List>
@@ -187,8 +181,10 @@ export default function SideMenu() {
       >
         <div className={classes.drawerHeader} />
         <InnerContainer villas={villas} />
-        <div>
-          {/* <SocialMediaIconsReact icon="twitter" url="https://twitter.com/your-twitter-handle" /> */}
+        <div style={styles.mediaStyle}>
+          <SocialIcon url="https://github.com/odayabueid?tab=repositories" target="_blank" />
+          <SocialIcon url="https://www.linkedin.com/in/oday-abueid-7321b1128/" target="_blank" />
+          <SocialIcon url="https://twitter.com/MajidAlFuttaim" target="_blank" />
         </div>
       </main>
     </div>
@@ -208,6 +204,10 @@ const styles = {
   },
   listIcon: {
     color: '#b39759'
+  },
+  mediaStyle: {
+    textAlign: 'center',
+    marginTop: '20px'
   }
 }
 
