@@ -20,7 +20,9 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import InnerContainer from './InnerContainer'
 import { SocialIcon } from 'react-social-icons';
 import villasData from '../data.json'
-const drawerWidth = 240;
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
+var drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,11 +85,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SideMenu() {
+
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [pagesArr, setPagesArr] = React.useState([700000, 800000, 900000, 1000000])
   const [villas, setVillas] = React.useState([])
+  // console.log(drawerWidth)
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -117,10 +122,14 @@ export default function SideMenu() {
         handleVillasData.push(el)
       }
       setVillas(handleVillasData)
+      setOpen(false)
     })
+
   }
   return (
-    <div className={classes.root}>
+
+    <div
+      className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -145,6 +154,7 @@ export default function SideMenu() {
           </Typography>
         </Toolbar>
       </AppBar>
+
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -153,9 +163,10 @@ export default function SideMenu() {
         classes={{
           paper: classes.drawerPaper,
         }}
+
       >
         <div className={classes.drawerHeader}>
-          <h1>Villas Price Range</h1>
+          <h3 style={styles.slideSize}>Villas Price Range</h3>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
@@ -208,6 +219,9 @@ const styles = {
   mediaStyle: {
     textAlign: 'center',
     marginTop: '20px'
+  },
+  slideSize: {
+    fontSize: "22px"
   }
 }
 

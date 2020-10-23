@@ -125,7 +125,7 @@ class InnerContainer extends Component {
                         <Typography>Show Details</Typography>
                       </AccordionSummary>
                       <AccordionDetails style={styles.accordionDetails}>
-                        <div class="grid grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" style={{ height: "50px", overflowY: 'auto', width: "100%" }}>
                           <Typography>
                             Name : {item.villaName}
                           </Typography>
@@ -150,7 +150,7 @@ class InnerContainer extends Component {
             }
           </Carousel>
         </div>
-        <div class="grid grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           <FormControlLabel
             control={<Checkbox
               style={styles.checkBoxStyle}
