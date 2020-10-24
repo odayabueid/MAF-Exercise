@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import Carousel from 'react-material-ui-carousel'
 import { Paper } from '@material-ui/core'
-import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -106,15 +104,15 @@ class InnerContainer extends Component {
   render() {
     return (
       <div>
-        <div class="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-4">
           <Carousel interval={this.state.intervalAutoPlay} indicators={this.state.indicators} navButtonsAlwaysVisible={this.state.navButtonsAlwaysVisible} autoPlay={this.state.autoPlay} animation={this.state.animationRadio}>
             {
               this.state.villasDataArr.map((item, i) => {
                 var index = i + 1
-                return <Paper style={{ maxHeight: "600px" }}>
+                return <Paper key={i + 1} style={{ maxHeight: "600px" }}>
 
-                  <img src={item.villaImage} style={{ objectFit: 'cover', width: '100%', height: "500px" }} />
-                  <div class="grid grid-cols-1 gap-4">
+                  <img src={item.villaImage} style={styles.imageStyle} alt="Villa" />
+                  <div className="grid grid-cols-1 gap-4">
                     <Accordion>
                       <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
@@ -125,7 +123,7 @@ class InnerContainer extends Component {
                         <Typography>Show Details</Typography>
                       </AccordionSummary>
                       <AccordionDetails style={styles.accordionDetails}>
-                        <div class="grid grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" style={{ height: "50px", overflowY: 'auto', width: "100%" }}>
                           <Typography>
                             Name : {item.villaName}
                           </Typography>
@@ -150,7 +148,7 @@ class InnerContainer extends Component {
             }
           </Carousel>
         </div>
-        <div class="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           <FormControlLabel
             control={<Checkbox
               style={styles.checkBoxStyle}
@@ -176,7 +174,7 @@ class InnerContainer extends Component {
             label="Auto-Play"
           />
           <RadioGroup value={this.state.animationRadio} onChange={this.handleRadioChange}>
-            <div class="grid grid-cols-2 ">
+            <div className="grid grid-cols-2 ">
               <FormControlLabel value="fade" control={<Radio style={styles.checkBoxStyle}
               />} label="Fade" />
               <FormControlLabel value="slide" control={<Radio style={styles.checkBoxStyle}
@@ -201,6 +199,11 @@ const styles = {
   },
   checkBoxStyle: {
     color: "#b39759"
+  },
+  imageStyle: {
+    objectFit: 'cover',
+    width: '100%',
+    height: "500px"
   }
 
 }
