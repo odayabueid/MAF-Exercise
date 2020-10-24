@@ -90,24 +90,27 @@ export default function SideMenu() {
   const [open, setOpen] = React.useState(false);
   const [pagesArr] = React.useState([700000, 800000, 900000, 1000000])
   const [villas, setVillas] = React.useState([])
-  // console.log(drawerWidth)
 
+  // handle navSlide open
   const handleDrawerOpen = () => {
     setOpen(true);
   };
-
+  // handle navSlide close
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  // change title color
   const changeTitleColor = (e) => {
     e.target.style.color = '#b29658';
     e.target.style.cursor = "pointer"
 
   }
+  // reset title color 
   const resetTitleStyle = (e) => {
     e.target.style.color = '#fff';
-
   }
+
+  // handle the data of villas from data.json file
   const pagesHandler = (price) => {
     var handleVillasData = []
     villasData.villas.forEach(el => {
@@ -123,10 +126,9 @@ export default function SideMenu() {
       setVillas(handleVillasData)
       setOpen(false)
     })
-
   }
-  return (
 
+  return (
     <div
       className={classes.root}>
       <CssBaseline />

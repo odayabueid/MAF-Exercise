@@ -23,7 +23,7 @@ class InnerContainer extends Component {
     autoPlay: false,
     animationRadio: 'fade',
   }
-
+  // get the data from data.json file
   componentDidMount = () => {
     var villasDataArr = []
     villasData.villas.forEach(el => {
@@ -35,7 +35,7 @@ class InnerContainer extends Component {
       villasDataArr: villasDataArr
     })
   }
-
+  // update the content of villas
   componentDidUpdate = (prevProps, props) => {
     if (prevProps.villas !== this.props.villas) {
       this.setState({
@@ -52,7 +52,7 @@ class InnerContainer extends Component {
     })
 
   }
-
+  // handle carousel indicator , vissibleButton and autoPlay
   handleCarousel = (name, event) => {
     if (name === 'indicatorsChecked') {
       if (event.target.checked) {
@@ -88,6 +88,7 @@ class InnerContainer extends Component {
       }
     }
   }
+  // handle fade and slide carousel
   handleRadioChange = (event) => {
     if (event.target.value === 'fade') {
       this.setState({
